@@ -1,6 +1,8 @@
 
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +29,12 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+		Alumno alguien = new Alumno();
+		String direccion = "/home.jsp";
+		request.setAttribute("ALG", alguien);
+		RequestDispatcher dispatcher = request.getRequestDispatcher(direccion);
+		dispatcher.forward(request, response);
 	}
 
 	/**
